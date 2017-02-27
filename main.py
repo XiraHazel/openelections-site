@@ -14,27 +14,31 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-    import webapp2
-    import csv
-    import StringIO
-    import json
+import webapp2
+import csv
+import StringIO
+import json
 
-    def process_csv_data(csv_data):
-        precinct_to_votes = {}
-        is_header = True
-        f = StringIO.StringIO(csv_data)
-        rows = csv.reader(f, delimiter=',')
-        for row in rows:
-            if is_header:
-                is_header = False
-                continue
-                #djjdiewjd
-                county = row[0]
-                precinct = row[1]
-                votes = row[]
-                print
-
-            return precinct_to_votes
+def process_csv_data(csv_data):
+    precinct_to_votes = {}
+    is_header = True
+    f = StringIO.StringIO(csv_data)
+    rows = csv.reader(f, delimiter=',')
+    for row in rows:
+        if is_header:
+            is_header = False
+            continue
+        else:
+            #djjdiewjd
+            county = row[0]
+            precinct = row[1]
+            votes = row[6]
+            vote_entry = {}
+            vote_entry["county"] = county
+            vote_entry["precinct"] = precinct
+            vote_entry["votes"] = votes
+            precinct_to_votes[precinct] = vote_entry
+    return precinct_to_votes
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
