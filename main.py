@@ -29,7 +29,6 @@ def process_csv_data(csv_data):
             is_header = False
             continue
         else:
-            #djjdiewjd
             county = row[0]
             precinct = row[1]
             votes = row[6]
